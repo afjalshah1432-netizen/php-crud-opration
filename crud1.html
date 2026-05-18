@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>crud using fetch ajax and mysqli</title>
+    <link rel="stylesheet" href="crud1.css">
+</head>
+<body>
+    <div class="container">
+        <form action="crud1.php" method="post" class="box">
+            <h1>crud operation</h1>
+            <label for="id">id</label>
+            <input type="text" id="id" name="id" />
+             <label for="name">name</label>
+            <input type="text" id="name" name="name" />
+             <label for="id">email</label>
+            <input type="text" id="email" name="email" />
+             <label for="id">password</label>
+            <input type="text" id="password" name="password" />
+            <div class="btns">
+                <button type="button" id="insert" name="insert" class="btn">insert</button>
+                <button type="button" id="update" name="update" class="btn">update</button>
+                <button type="button" id="delete" name="delete" class="btn">delete</button>
+                <button type="button" id="view" name="view" class="btn">view</button>
+            </div>
+            
+        </form>
+        <div id="dataAll"></div>
+    </div>
+    <script>
+        let id=document.getElementById("id");
+        let name=document.getElementById("name");
+        let email=document.getElementById("email");
+        let password=document.getElementById("password");
+        let insert=document.getElementById("insert");
+        let update=document.getElementById("update");
+        let delete1=document.getElementById("delete");
+        let view=document.getElementById("view");
+        let dataAll=document.getElementById("dataAll");
+
+        insert.addEventListener("click",insertData);
+        async function insertData() {
+            const res= await fetch("crud1.php",{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/x-www-form-urlencoded"
+                },
+                body:"id="+encodeURIComponent(id.value)+"&name="+encodeURIComponent(name.value)+"&email="+encodeURIComponent(email.value)+"&password="+encodeURIComponent(password.value)+"&insert=insert"
+            });
+            const data=await res.text();
+            console.log(data);
+            viewData();
+        }
+        view.addEventListener("click",viewData);
+        function viewData(){
+            fetch("crud1.php",{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/x-www-form-urlencoded"
+                },
+                body:"view=view"
+            })
+            .then((res)=>res.text())
+            .then((data)=>{
+                console.log(data);
+                dataAll.innerHTML=data;
+            })
+            .catch((err)=>{
+                console.log(err)
+            });
+        }
+        update.addEventListener("click",updateData);
+        async function updateData(){
+            const res=await fetch("crud1.php",{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/x-www-form-urlencoded"
+                },
+                body:`id=${encodeURIComponent(id.value)}&name=${encodeURIComponent(name.value)}
+                     &email=${encodeURIComponent(email.value)}&password=${encodeURIComponent(password.value)}&update=update`
+            });
+            const data=await res.text();
+            console.log(data);
+            viewData();
+        }
+        delete1.addEventListener("click",deleteData);
+        async function deleteData(){
+            const res=await fetch("crud1.php",{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/x-www-form-urlencoded"
+                },
+                body:`id=${encodeURIComponent(id.value)}&delete=delete`
+            });
+            const data=await res.text();
+            console.log(data);
+            viewData();
+        }
+    </script>
+</body>
+</html>
