@@ -1,0 +1,84 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.container{
+    height: 100vh;
+    width: 100vw;
+    background-color: steelblue;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.box{
+    height: 500px;
+    width: 500px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 60px;
+    border-radius: 4px;
+    box-shadow: 0 0 5px black;
+}
+.box h1{
+    text-align: center;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+}
+.box label{
+    text-transform: capitalize;
+    font-size: 18px;
+    margin-top: 10px;
+}
+.box input{
+    height: 35px;
+    border: 1px solid rgba(0,0,0,0.3);
+    font-size: 18px;
+    padding: 0 20px;
+    border-radius:4px;
+}
+.box .btns{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+.box .btns .btn{
+    background-color: blue;
+    color: white;
+    border: none;
+    font-size: 20px;
+    text-transform: capitalize;
+    height: 40px;
+    width: 90px;
+    border-radius: 20px; 
+}
+.box .btns .btn:hover{
+    background-color: rgb(0,0,120);
+    cursor: pointer;
+}
+.box .btns .btn:active{
+    background-color: blue;
+}
+.dataAll{
+    height: 500px;
+    width: 500px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 0 5px black;
+}
+table{
+    box-shadow: 0 0 3px black;
+    background-color: rgb(232,231,231);
+    border: none;
+}
+th{
+    background-color: blue;
+    color: white;
+    padding: 20px;
+}
+td
+{
+    padding: 20px;
+}
