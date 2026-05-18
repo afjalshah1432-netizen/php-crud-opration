@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch 7th example with php searchbox table</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .container{
+        height: 100vh;
+        width: 100vw;
+        background-color: steelblue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    table{
+        border: none;
+        box-shadow: 0 0 10px black;
+    }
+    th{
+        background-color: blue;
+        color: white;
+        text-align: center;
+        text-transform: capitalize;
+        font-size: 20px;
+        padding: 20px;
+    }
+    td{
+        padding: 20px;
+        text-align: center;
+        text-transform: capitalize;
+        background-color: white;
+        font-size:20px;
+    }
+    .navbar{
+        height: 70px;
+        width: 100%;
+        background-color: black;
+        color:white;
+        display: flex;
+        align-items: center;
+    }
+    .logo{
+        font-size: 45px;
+        text-transform: capitalize;
+        text-shadow: 3px 3px 4px orange;
+        margin-left: 50px;
+    }
+    #searchbox{
+        height: 50px;
+        margin-left: auto;
+        margin-right: 100px;
+        border-radius: 4px;
+        padding: 0 20px;
+        width: 50%;
+        font-size: 24px;
+        border:1px solid rgba(0,0,0,0.3);
+    }
+</style>
+<body>
+    <div class="navbar">
+        <div class="logo">afjal shah</div>
+        <input type="text" id="searchbox"/>
+    </div>
+    <div class="container">
+        <div class="table"></div>
+    </div>
+    <script>
+        let searchbox=document.getElementById("searchbox");
+        let table=document.querySelector(".table");
+        searchbox.addEventListener("keyup",searchData);
+        async function searchData(){
+            const res= await fetch("fetch7.php",{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({
+                    q:searchbox.value,
+                    search:"search"
+                })
+            });
+            const data=await res.text();
+            console.log(data);
+            
+            table.innerHTML=data;
+        }
+    </script>
+</body>
+</html>
